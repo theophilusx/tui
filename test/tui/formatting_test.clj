@@ -107,7 +107,7 @@
 
 (t/deftest find-break-point
   (t/testing "Find next break point going backwards from specified pos"
-    (t/is (= -1 (sut/find-break-point "0123456789" 11)))
+    (t/is (= 9 (sut/find-break-point "0123456789" 11)))
     (t/is (= 11 (sut/find-break-point "0123456789AB" 11)))
     (t/is (= 9 (sut/find-break-point "012345678 ABC" 11)))
     (t/is (= 8 (sut/find-break-point "01234567 9ABC" 11)))

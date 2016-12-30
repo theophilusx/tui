@@ -46,7 +46,7 @@ by default. Optionally specify padding character"
 (defn find-break-point [txt width]
   (cond
     (< width 1) -1
-    (<= (count txt) width) (dec (cound txt))
+    (<= (count txt) width) (dec (count txt))
     :else (loop [pos (dec (min (count txt) width))]
             (cond
               (= pos 0) width

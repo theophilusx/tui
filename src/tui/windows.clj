@@ -10,8 +10,8 @@
   [win]
   (fn [cols rows]
     (dosync
-     (alter active-windows assoc-in [win :cols] cols)
-     (alter active-windows assoc-in [win :rows] rows))))
+     (alter active-windows assoc-in [win :window-columns] cols)
+     (alter active-windows assoc-in [win :window-rows] rows))))
 
 
 (defn make-window
@@ -21,7 +21,11 @@
                           {:cols cols
                            :rows rows
                            :resize-listener (make-resize-handler win-name)})
-        info {:cols cols :rows rows :window w}]
+        info {:window-columns cols
+              :window-rows rows
+              :cursor-column 0
+              :cursor-row 0
+              :window w}]
     (dosync
      (alter active-windows assoc win-name info))
     w))
@@ -36,15 +40,49 @@
   [win]
   (get-in @active-windows [win :window]))
 
-(defn get-columns
+(defn get-window-columns
   "Return current columns for window"
   [win]
-  (get-in @active-windows [win :cols]))
+  (get-in @active-windows [win :window-columns]))
 
-(defn get-rows
+(defn set-cursor-column
+  "Set the cursor column position"
+  [win col]
+  (dosync
+   (alter active-windows assoc-in [win :cursor-column] col)))
+
+(defn get-cursor-column
+  "Get the current cursor column"
+  [win]
+  (get-in @active-windows [win :cursor-column]))
+
+(defn get-window-rows
   "Return current rows for window"
   [win]
-  (get-in @active-windows [win :rows]))
+  (get-in @active-windows [win :window-rows]))
+
+(defn set-cursor-row
+  "Set the current cursor row"
+  [win row]
+  (dosync
+   (alter active-windows assoc-in [win :cursor-row] row)))
+
+(defn get-cursor-row
+  "Get the cursor row"
+  [win]
+  (get-in @active-windows [win :cursor-row]))
+
+(defn set-cursor
+  "Set the cursor"
+  [win col row]
+  (dosync
+   (alter active-windows assoc-in [win :cursor-column] col)
+   (alter active-windows assoc-in (win :cursor-row) row)))
+
+(defn get-cursor
+  "Get the current window cursor"
+  [win]
+  [(get-cursor-column win) (get-cursor-row win)])
 
 (defn destroy-window
   "Destroy a window"
