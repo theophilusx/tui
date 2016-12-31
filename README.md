@@ -10,7 +10,8 @@ This library uses the [Clojure Lanterna library](https://github.com/sjl/clojure-
 
 ## Usage
 
-Have a look at the tests to get an idea of how to use this library. Read the
+Have a look at the tests to get an idea of how to use this library and the
+example-app function in the core.clj file. Read the
 clojure and java Lanterna docs. If you have ever done anything with ncurses,
 this should all be pretty straight-forward.
 
@@ -21,14 +22,8 @@ hope this may give you some ideas.
 
 Note that most of the time when I use this library, performance is not an
 issue. I tend to use Clojure quite a bit for writing simple tools or utility
-programs. In particular, I have been working on a large Identity and Access
-Management project where I needed some tools to query Oracle databases, OpenLDAP
-and Active Directory. I use Clojure for all these tools. Originally, the tools
-were command line driven, which was fine except the JVM startup time and
-creation of LDAP and JDBC connections was slow. I used this library to create a
-simple user interface which allowed me to maintain a single instance of the tool
-running and allow me to query the different data sources, with results formatted
-nicely in a text window.
+programs. The interface requirements are quite simple and almost certainly don't
+exercise the many bugs hidden here!
 
 ## License
 
