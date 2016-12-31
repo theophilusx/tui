@@ -77,12 +77,19 @@
   [win col row]
   (dosync
    (alter active-windows assoc-in [win :cursor-column] col)
-   (alter active-windows assoc-in (win :cursor-row) row)))
+   (alter active-windows assoc-in [win :cursor-row] row)))
 
 (defn get-cursor
   "Get the current window cursor"
   [win]
   [(get-cursor-column win) (get-cursor-row win)])
+
+(defn get-window-size
+  "Get the columns and rows for a window"
+  [win]
+  [(get-window-columns win) (get-window-rows win)])
+
+
 
 (defn destroy-window
   "Destroy a window"

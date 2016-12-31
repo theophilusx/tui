@@ -10,6 +10,7 @@
     (t/testing "Test window utility functions"
       (t/is (= 40 (sut/get-window-columns :test)))
       (t/is (= 10 (sut/get-window-rows :test)))
+      (t/is (= [40 10] (sut/get-window-size :test)))
       (t/is (= true (instance? com.googlecode.lanterna.screen.Screen
                                (sut/get-window :test)))))
     (t/testing "Window cursor operations"
