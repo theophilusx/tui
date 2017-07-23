@@ -89,7 +89,13 @@
   [win]
   [(get-window-columns win) (get-window-rows win)])
 
+(defn create-window [win]
+  (let [w (get-window win)]
+    (scr/start w)))
 
+(defn redraw-window [win]
+  (when-let [w (get-window win)]
+    (scr/redraw w)))
 
 (defn destroy-window
   "Destroy a window"
