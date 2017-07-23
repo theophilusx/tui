@@ -25,6 +25,11 @@ issue. I tend to use Clojure quite a bit for writing simple tools or utility
 programs. The interface requirements are quite simple and almost certainly don't
 exercise the many bugs hidden here!
 
+The basic abstraction is a window. I tend to use keywords to name windows and
+the abstractions in this library maintains a structure which tracks details
+about current windows. It makes it easier to have multiple windows at the same
+time. 
+
 ## License
 
 Copyright © 2016 Tim Cross
